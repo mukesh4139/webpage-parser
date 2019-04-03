@@ -24,5 +24,8 @@ of h1, h2, h3 tags and link of a tags.
 #### Create New Page
     curl -i -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X POST -d '{"data": {"type":"page", "attributes":{"url":"https://www.facebook.com"}}}' http://localhost:3000/pages
     
-#### Fetch the parsed URLs along with tags
+#### Fetch the content of all parsed URLs along with tags
     curl -i -H "Accept: application/vnd.api+json" "http://localhost:3000/pages?include=tags"    
+
+#### Fetch the content of a parsed URL
+    curl -G -H "Accept: application/vnd.api+json" "http://localhost:3000/pages?include=tags" --data-urlencode "filter[url]=https://www.google.com"
