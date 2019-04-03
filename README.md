@@ -1,24 +1,28 @@
-# README
+== README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Web Page Parser
 
-Things you may want to cover:
+This is a ruby on rails application that parse the webpage and stores the content
+of h1, h2, h3 tags and link of a tags.
 
-* Ruby version
+## Dependencies
+            * Ruby Version    : 2.3.1
+            * Rails           : 5.1.7
+            * JsonApi Resources
+            * Nokogiri
+            
+## Installation
+            $ git clone https://github.com/mukesh4139/webpage-parser.git
+            $ bundle install
+            $ rake db:create
+            $ rake db:migrate
+            $ rails server
+            
 
-* System dependencies
+## APIs
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#### Create New Page
+    curl -i -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X POST -d '{"data": {"type":"page", "attributes":{"url":"https://www.facebook.com"}}}' http://localhost:3000/pages
+    
+#### Fetch the parsed URLs along with tags
+    curl -i -H "Accept: application/vnd.api+json" "http://localhost:3000/pages?include=tags"    
