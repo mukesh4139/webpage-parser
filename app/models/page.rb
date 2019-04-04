@@ -20,6 +20,7 @@ class Page < ApplicationRecord
   before_create :parse
 
   validates_presence_of :url
+  validates :url, http_url: true
 
   private
 

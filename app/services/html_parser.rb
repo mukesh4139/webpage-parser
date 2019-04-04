@@ -1,26 +1,37 @@
 require 'open-uri'
 
 class HtmlParser
-  attr_reader :nokogiri_object
 
   def initialize(url)
-    html = open(url)
-    @nokogiri_object = Nokogiri::HTML(html)
+    @url = url
   end
 
   def h1_tags
-    nokogiri_object.xpath('//h1').map(&:text)
+    nokogiri_object.xpath('//h1').map(&:text) rescue []
   end
 
   def h2_tags
-    nokogiri_object.xpath('//h2').map(&:text)
+    nokogiri_object.xpath('//h2').map(&:text) rescue []
   end
 
   def h3_tags
-    nokogiri_object.xpath('//h3').map(&:text)
+    nokogiri_object.xpath('//h3').map(&:text) rescue []
   end
 
   def a_tags
-    nokogiri_object.xpath('//a').map { |element| element["href"] }
+    nokogiri_object.xpath('//a').map { |element| element["href"] } rescue []
+  end
+
+  private
+
+  def html
+    @html ||= open(@url)
+  rescue SocketError => exception
+    puts "Error: #{exception}"
+    nil
+  end
+
+  def nokogiri_object
+    @nokogiri_object ||= Nokogiri::HTML(html) if html
   end
 end
