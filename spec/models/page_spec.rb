@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Page, type: :model do
-
   # Association Test
   # ensure Page model has 1:m relationship with the Tag model
   it { should have_many(:tags).dependent(:destroy) }

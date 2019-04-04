@@ -10,7 +10,8 @@
 
 class Page < ApplicationRecord
 
-  has_many :tags
+  has_many :tags, dependent: :destroy
+
   has_one :a_tags, -> { where(_type: Tag.a_type) }, class_name: 'Tag'
   has_one :h1_tags, -> { where(_type: Tag.h1_type) }, class_name: 'Tag'
   has_one :h2_tags, -> { where(_type: Tag.h2_type) }, class_name: 'Tag'

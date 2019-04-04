@@ -13,6 +13,7 @@
 class Tag < ApplicationRecord
   # To make content behave as an array
   serialize :content, Array
+  belongs_to :page
 
   enum _type: { a: 0, h1: 1, h2: 2, h3: 3 }
 
