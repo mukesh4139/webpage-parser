@@ -7,19 +7,19 @@ class HtmlParser
   end
 
   def h1_tags
-    nokogiri_object.xpath('//h1').map(&:text) rescue []
+    nokogiri_object.xpath('//h1').map(&:text) rescue nil
   end
 
   def h2_tags
-    nokogiri_object.xpath('//h2').map(&:text) rescue []
+    nokogiri_object.xpath('//h2').map(&:text) rescue nil
   end
 
   def h3_tags
-    nokogiri_object.xpath('//h3').map(&:text) rescue []
+    nokogiri_object.xpath('//h3').map(&:text) rescue nil
   end
 
   def a_tags
-    nokogiri_object.xpath('//a').map { |element| element["href"] } rescue []
+    nokogiri_object.xpath('//a').map { |element| element["href"] } rescue nil
   end
 
   private
